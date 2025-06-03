@@ -12,7 +12,7 @@ function FluidInitialised({ onInfo, onCommand, onError, open, transaction }) {
 			id="fluid-widget"
 			transaction={transaction}
 			open={open}
-			balance="1000"
+			balance="888"
 			withdrawable-balance="900"
 			deposit-limit=""
 			success-cta-link=""

@@ -1,13 +1,13 @@
 import { useLayoutEffect, useRef } from 'react';
 import { listenForFluidEvents } from './fluidScripts.js';
 import config from '../config.js';
-import widget from '../widget.js';
+import widget from './widget.js';
 import bonuses from '../bonuses.js';
 
 function FluidInjected({ onInfo, onCommand, onError, open, transaction }) {
 	const ref = useRef(null);
 
-	useLayoutEffect(listenForFluidEvents(ref, onCommand, onInfo, onError), [ onCommand, onInfo, onError, ref ]);
+	useLayoutEffect(listenForFluidEvents(ref, onCommand, onInfo, onError), [onCommand, onInfo, onError, ref]);
 
 	return <fluid-widget
 		ref={ref}
@@ -20,7 +20,7 @@ function FluidInjected({ onInfo, onCommand, onError, open, transaction }) {
 		currency={widget.currencyCode}
 		transaction={transaction}
 		open={open}
-		balance="1000"
+		balance="999"
 		withdrawable-balance="900"
 		bonuses={JSON.stringify(bonuses || [])}
 		user-data={JSON.stringify(widget.userData)}
