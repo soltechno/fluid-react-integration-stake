@@ -14,6 +14,7 @@ function FluidScript() {
 			script.type = 'module';
 			script.onload = () => {
 				console.log('Fluid script loaded');
+				window.dispatchEvent(new Event('fluidScriptLoaded'));
 			};
 			document.body.appendChild(script);
 
