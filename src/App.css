@@ -1,10 +1,1993 @@
 #root {
-	max-width: 1280px;
+	/* max-width: 1280px;
 	margin: 0 auto;
 	padding: 2rem;
-	text-align: center;
+	text-align: center; */
 }
 
+.layout-container, .d-flex {
+	display: flex
+}
+
+.d-none {
+	display: none;
+}
+
+.sidebar-container.sidebar-expanded {
+	width: 240px;
+}
+
+@media (max-width: 889.98px) {
+	.sidebar-container.hidden {
+		top: 100%;
+	}
+}
+
+@media (max-width: 889.98px) {
+	.sidebar-container.sidebar-expanded {
+		width: 100%;
+	}
+}
+
+@media (max-width: 1199.98px) {
+	.sidebar-container.sidebar-expanded {
+		height: 100%;
+		left: 0;
+		position: fixed;
+		z-index: 1000;
+	}
+}
+
+.sidebar-container.sidebar-expanded {
+	width: 240px;
+}
+
+@media (max-width: 889.98px) {
+	.sidebar-container {
+		height: 100%;
+		left: 0;
+		position: fixed;
+		top: var(--header-height);
+		transition: top var(--transition-medium);
+		width: 100%;
+		z-index: 1000;
+	}
+}
+
+@media (max-width: 1199.98px) {
+	.sidebar-container {
+		bottom: 0;
+		position: fixed;
+	}
+}
+
+.sidebar-container {
+	background: var(--grey-700);
+	flex-shrink: 0;
+	max-height: 100vh;
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+	transition: width .3s;
+	white-space: "nowrap";
+	width: 60px;
+	z-index: 2;
+}
+
+@media (max-width: 1199.98px) {
+	.content-container {
+		padding-left: 60px;
+	}
+}
+
+@media (max-width: 889.98px) {
+	.content-container {
+		padding-left: 0;
+	}
+}
+
+
+
+.content-container {
+	min-width: 0;
+	width: 100%;
+}
+
+.content-container {
+	height: 100dvh;
+	overflow-y: auto;
+	transition: margin-right var(--transition-medium);
+	-webkit-overflow-scrolling: auto;
+	scrollbar-color: var(--grey-400) #0000;
+	scrollbar-width: thin;
+}
+
+/* Main container */
+.main-container {
+	min-height: 70vh;
+	padding: var(--spacing-1-75) 3vw var(--spacing-2) 3vw;
+}
+
+
+/* Footer */
+.footer {
+	background: var(--grey-800);
+	height: unset;
+	justify-content: center;
+	padding: var(--spacing-2) 3vw;
+	width: 100%;
+}
+
+.footer__content {
+	display: grid;
+	grid-gap: var(--spacing-2);
+}
+
+.container {
+	margin: auto;
+	max-width: 1200px;
+	width: 100%;
+}
+
+/* Buttons */
+.btn,
+.button {
+	align-items: center;
+	appearance: none;
+	background: 0 0;
+	border: none;
+	border-radius: var(--radius-base);
+	box-shadow: var(--shadow-button-sm);
+	cursor: pointer;
+	display: inline-flex;
+	flex-shrink: 0;
+	font-size: inherit;
+	font-weight: 600;
+	justify-content: center;
+	line-height: inherit;
+	margin: 0;
+	min-width: 70px;
+	padding: 0;
+	position: relative;
+	touch-action: manipulation;
+	transition: background-color var(--transition-fast), color var(--transition-fast);
+	transition: all .3s
+}
+
+.btn.size-md,
+.button.size-md {
+	font-size: var(--text-size-button-md);
+	padding: var(--spacing-button-padding-vertical-md) var(--spacing-button-padding-horizontal-md)
+}
+
+.btn.size-sm,
+.button.size-sm {
+	font-size: var(--text-size-button-sm);
+	padding: var(--spacing-button-padding-vertical-sm) var(--spacing-button-padding-horizontal-sm)
+}
+
+.btn:disabled,
+.button:disabled {
+	cursor: not-allowed;
+	opacity: .5
+}
+
+.btn.btn-link,
+.btn.variant-link,
+.button.btn-link,
+.button.variant-link {
+	background: 0 0;
+	box-shadow: none;
+	color: var(--white);
+	outline: none
+}
+
+.btn.btn-action,
+.btn.variant-action,
+.button.btn-action,
+.button.variant-action {
+	background: var(--color-primary-base);
+	color: var(--white)
+}
+
+.btn.btn-action:active,
+.btn.btn-action:focus,
+.btn.btn-action:hover,
+.btn.variant-action:active,
+.btn.variant-action:focus,
+.btn.variant-action:hover,
+.button.btn-action:active,
+.button.btn-action:focus,
+.button.btn-action:hover,
+.button.variant-action:active,
+.button.variant-action:focus,
+.button.variant-action:hover {
+	background: var(--color-primary-hover)
+}
+
+.btn.btn-neutral,
+.btn.btn-secondary,
+.btn.variant-neutral,
+.button.btn-neutral,
+.button.btn-secondary,
+.button.variant-neutral {
+	background: var(--color-secondary-base);
+	color: var(--white)
+}
+
+.btn.btn-neutral:active,
+.btn.btn-neutral:focus,
+.btn.btn-neutral:hover,
+.btn.btn-secondary:active,
+.btn.btn-secondary:focus,
+.btn.btn-secondary:hover,
+.btn.variant-neutral:active,
+.btn.variant-neutral:focus,
+.btn.variant-neutral:hover,
+.button.btn-neutral:active,
+.button.btn-neutral:focus,
+.button.btn-neutral:hover,
+.button.btn-secondary:active,
+.button.btn-secondary:focus,
+.button.btn-secondary:hover,
+.button.variant-neutral:active,
+.button.variant-neutral:focus,
+.button.variant-neutral:hover {
+	background: var(--color-secondary-hover)
+}
+
+.btn.btn-primary,
+.btn.btn-success,
+.btn.variant-success,
+.button.btn-primary,
+.button.btn-success,
+.button.variant-success {
+	background: var(--color-success-base);
+	color: var(--color-success-on-success)
+}
+
+.btn.btn-primary:active,
+.btn.btn-primary:focus,
+.btn.btn-primary:hover,
+.btn.btn-success:active,
+.btn.btn-success:focus,
+.btn.btn-success:hover,
+.btn.variant-success:active,
+.btn.variant-success:focus,
+.btn.variant-success:hover,
+.button.btn-primary:active,
+.button.btn-primary:focus,
+.button.btn-primary:hover,
+.button.btn-success:active,
+.button.btn-success:focus,
+.button.btn-success:hover,
+.button.variant-success:active,
+.button.variant-success:focus,
+.button.variant-success:hover {
+	background: var(--color-success-hover)
+}
+
+.btn.btn-tab,
+.btn.variant-tab,
+.button.btn-tab,
+.button.variant-tab {
+	background: var(--grey-700);
+	box-shadow: none;
+	color: var(--white)
+}
+
+.btn.variant-outlined,
+.button.variant-outlined {
+	border-color: var(--color-utils-outline-variant);
+	border-style: solid;
+	border-width: var(--border-thin);
+	color: var(--white)
+}
+
+.btn.variant-outlined:active,
+.btn.variant-outlined:focus,
+.btn.variant-outlined:hover,
+.button.variant-outlined:active,
+.button.variant-outlined:focus,
+.button.variant-outlined:hover {
+	background: var(--color-surface-primary-highest)
+}
+
+.btn {
+	font-size: var(--text-size-button-sm);
+	padding: var(--spacing-button-padding-vertical-sm) var(--spacing-button-padding-horizontal-sm)
+}
+
+[type=button],
+[type=reset],
+[type=submit],
+button {
+	-webkit-appearance: button;
+}
+
+@font-face {
+	font-family: icomoon;
+	font-style: normal;
+	font-weight: 400;
+	src: url(../assets/fonts/icomoon.f15cbe437878be2dc758.eot);
+	src: url(../assets/fonts/icomoon.f15cbe437878be2dc758.eot#iefix) format("embedded-opentype"), url(/icomoon.c5c5a80dee6b58dc0283.ttf) format("truetype"), url(../assets/fonts/icomoon.585088dcdcb84d4b0bac.woff) format("woff"), url(../assets/icomoon.247f71b99bcdba432405.svg#icomoon) format("svg")
+}
+
+[class*=" icon-"],
+[class^=icon-] {
+	font-family: icomoon !important;
+	speak: never;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 1;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+
+.icon-Pereira:before {
+	content: ""
+}
+
+.icon-Juventude:before {
+	content: ""
+}
+
+.icon-Pantoja:before {
+	content: ""
+}
+
+.icon-Enyimba:before {
+	content: ""
+}
+
+.icon-Jose:before {
+	content: ""
+}
+
+.icon-Gabigol:before {
+	content: ""
+}
+
+.icon-Burns:before {
+	content: ""
+}
+
+.icon-Alfa-Romeo:before {
+	content: ""
+}
+
+.icon-Drake:before {
+	content: ""
+}
+
+.icon-Watford:before {
+	content: ""
+}
+
+.icon-Volleyball-Nations-League:before {
+	content: ""
+}
+
+.icon-UFC:before {
+	content: ""
+}
+
+.icon-Anuel:before {
+	content: ""
+}
+
+.icon-Teixeira:before {
+	content: ""
+}
+
+.icon-Team-Secret:before {
+	content: ""
+}
+
+.icon-Fittipaldi:before {
+	content: ""
+}
+
+.icon-Everton:before {
+	content: ""
+}
+
+.icon-Brazil-Rugby:before {
+	content: ""
+}
+
+.icon-Aguero:before {
+	content: ""
+}
+
+.icon-Almeida:before {
+	content: ""
+}
+
+.icon-Alexa:before {
+	content: ""
+}
+
+.icon-Boxing-In-Japan:before {
+	content: ""
+}
+
+.icon-Adesanya:before {
+	content: ""
+}
+
+.icon-fittipaldi:before {
+	content: ""
+}
+
+.icon-everton:before {
+	content: ""
+}
+
+.icon-brazilrugby:before {
+	content: ""
+}
+
+.icon-aguero:before {
+	content: ""
+}
+
+.icon-jose:before {
+	content: ""
+}
+
+.icon-alexa:before {
+	content: ""
+}
+
+.icon-boxinginjp:before {
+	content: ""
+}
+
+.icon-adesanya:before {
+	content: ""
+}
+
+.icon-harness:before {
+	content: ""
+}
+
+.icon-horse-racing:before {
+	content: ""
+}
+
+.icon-schwingen:before {
+	content: ""
+}
+
+.icon-Starting-soon-3rd .path1:before {
+	color: #105eb4;
+	content: ""
+}
+
+.icon-Starting-soon-3rd .path2:before {
+	color: #72aced;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-Starting-soon-Half .path1:before {
+	color: #105eb4;
+	content: ""
+}
+
+.icon-Starting-soon-Half .path2:before {
+	color: #72aced;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-Starting-soon-1st .path1:before {
+	color: #105eb4;
+	content: ""
+}
+
+.icon-Starting-soon-1st .path2:before {
+	color: #72aced;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-alpine-skiing:before {
+	content: ""
+}
+
+.icon-american-football:before {
+	content: ""
+}
+
+.icon-american-football_usa_nfl:before {
+	content: ""
+}
+
+.icon-archery:before {
+	content: ""
+}
+
+.icon-athletics:before {
+	content: ""
+}
+
+.icon-aussie-rules:before {
+	content: ""
+}
+
+.icon-badminton:before {
+	content: ""
+}
+
+.icon-bandy:before {
+	content: ""
+}
+
+.icon-baseball:before {
+	content: ""
+}
+
+.icon-baseball_usa_mlb:before {
+	content: ""
+}
+
+.icon-basketball:before {
+	content: ""
+}
+
+.icon-basketball-3x3:before {
+	content: ""
+}
+
+.icon-basketball_international_euroleague:before {
+	content: ""
+}
+
+.icon-basketball_international_fiba-world-cup:before {
+	content: ""
+}
+
+.icon-basketball_spain_liga-acb:before {
+	content: ""
+}
+
+.icon-basketball_usa_nba:before {
+	content: ""
+}
+
+.icon-beach-soccer:before {
+	content: ""
+}
+
+.icon-beach-volley:before {
+	content: ""
+}
+
+.icon-beach-volleyball:before {
+	content: ""
+}
+
+.icon-biathlon:before {
+	content: ""
+}
+
+.icon-bobsleigh:before {
+	content: ""
+}
+
+.icon-bowls:before {
+	content: ""
+}
+
+.icon-boxing:before {
+	content: ""
+}
+
+.icon-canoeing:before {
+	content: ""
+}
+
+.icon-chess:before {
+	content: ""
+}
+
+.icon-chess1:before {
+	content: ""
+}
+
+.icon-watford:before {
+	content: ""
+}
+
+.icon-cricket:before {
+	content: ""
+}
+
+.icon-cross-country:before {
+	content: ""
+}
+
+.icon-curling:before {
+	content: ""
+}
+
+.icon-cycling:before {
+	content: ""
+}
+
+.icon-darts:before {
+	content: ""
+}
+
+.icon-diving:before {
+	content: ""
+}
+
+.icon-e-sport:before {
+	content: ""
+}
+
+.icon-empty-spot-2:before {
+	content: ""
+}
+
+.icon-empty-spot:before {
+	content: ""
+}
+
+.icon-equestrian:before {
+	content: ""
+}
+
+.icon-esports:before {
+	content: ""
+}
+
+.icon-european-ch-ship-qf:before {
+	content: ""
+}
+
+.icon-fencing:before {
+	content: ""
+}
+
+.icon-field-hockey:before {
+	content: ""
+}
+
+.icon-fifa:before {
+	content: ""
+}
+
+.icon-figure-skating:before {
+	content: ""
+}
+
+.icon-floorball:before {
+	content: ""
+}
+
+.icon-formula-1:before {
+	content: ""
+}
+
+.icon-formula-e:before {
+	content: ""
+}
+
+.icon-freestyle-skiing:before {
+	content: ""
+}
+
+.icon-futsal:before {
+	content: ""
+}
+
+.icon-gaelic-football:before {
+	content: ""
+}
+
+.icon-gaelic-hurling:before {
+	content: ""
+}
+
+.icon-goals:before {
+	content: ""
+}
+
+.icon-golf:before {
+	content: ""
+}
+
+.icon-greyhound:before {
+	content: ""
+}
+
+.icon-gymnastics:before {
+	content: ""
+}
+
+.icon-handball:before {
+	content: ""
+}
+
+.icon-ice-hockey:before {
+	content: ""
+}
+
+.icon-ice-hockey_usa_nhl:before {
+	content: ""
+}
+
+.icon-indy-racing:before {
+	content: ""
+}
+
+.icon-judo:before {
+	content: ""
+}
+
+.icon-kabaddi:before {
+	content: ""
+}
+
+.icon-luge:before {
+	content: ""
+}
+
+.icon-marathon-swimming:before {
+	content: ""
+}
+
+.icon-mma:before {
+	content: ""
+}
+
+.icon-mma2:before {
+	content: ""
+}
+
+.icon-modern-pentathlon:before {
+	content: ""
+}
+
+.icon-motorcycle-racing:before {
+	content: ""
+}
+
+.icon-motorcycle-racing_1:before {
+	content: ""
+}
+
+.icon-motorsport:before {
+	content: ""
+}
+
+.icon-nba2k:before {
+	content: ""
+}
+
+.icon-nhl20:before {
+	content: ""
+}
+
+.icon-nhl21:before {
+	content: ""
+}
+
+.icon-nordic-combined:before {
+	content: ""
+}
+
+.icon-olympics:before {
+	content: ""
+}
+
+.icon-pesapallo:before {
+	content: ""
+}
+
+.icon-politics-entertainment:before {
+	content: ""
+}
+
+.icon-popular-events:before {
+	content: ""
+}
+
+.icon-racing:before {
+	content: ""
+}
+
+.icon-rowing:before {
+	content: ""
+}
+
+.icon-rugby:before {
+	content: ""
+}
+
+.icon-rugby-league:before {
+	content: ""
+}
+
+.icon-rugby_rugby-union_world-cup:before {
+	content: ""
+}
+
+.icon-sailing:before {
+	content: ""
+}
+
+.icon-short-track:before {
+	content: ""
+}
+
+.icon-skateboarding:before {
+	content: ""
+}
+
+.icon-skeleton:before {
+	content: ""
+}
+
+.icon-ski-jumping:before {
+	content: ""
+}
+
+.icon-snooker:before {
+	content: ""
+}
+
+.icon-snowboard:before {
+	content: ""
+}
+
+.icon-soccer:before {
+	content: ""
+}
+
+.icon-soccer-mythical:before {
+	content: ""
+}
+
+.icon-soccer_brazil_brasilerio-serie-a:before {
+	content: ""
+}
+
+.icon-soccer_england_fa-cup:before {
+	content: ""
+}
+
+.icon-soccer_england_premier-league:before {
+	content: ""
+}
+
+.icon-soccer_france_ligue-1:before {
+	content: ""
+}
+
+.icon-soccer_germany_bundesliga:before {
+	content: ""
+}
+
+.icon-soccer_international-clubs_copa-libertadores:before {
+	content: ""
+}
+
+.icon-soccer_international-clubs_uefa-champions-league:before {
+	content: ""
+}
+
+.icon-soccer_international_uefa-europa-league:before {
+	content: ""
+}
+
+.icon-soccer_italy_serie-a:before {
+	content: ""
+}
+
+.icon-soccer_japan_j-league:before {
+	content: ""
+}
+
+.icon-soccer_spain_copa-del-rey:before {
+	content: ""
+}
+
+.icon-soccer_spain_la-liga:before {
+	content: ""
+}
+
+.icon-soccer_usa_major-league-soccer:before {
+	content: ""
+}
+
+.icon-softball:before {
+	content: ""
+}
+
+.icon-speed-skating:before {
+	content: ""
+}
+
+.icon-speedway:before {
+	content: ""
+}
+
+.icon-squash:before {
+	content: ""
+}
+
+.icon-starting-soon-2:before {
+	content: ""
+}
+
+.icon-stock-car-racing:before {
+	content: ""
+}
+
+.icon-surfing:before {
+	content: ""
+}
+
+.icon-swimming:before {
+	content: ""
+}
+
+.icon-table-tennis:before {
+	content: ""
+}
+
+.icon-taekwondo:before {
+	content: ""
+}
+
+.icon-team-away:before {
+	content: ""
+}
+
+.icon-team-home:before {
+	content: ""
+}
+
+.icon-tennis:before {
+	content: ""
+}
+
+.icon-tennis_atp_atp-world-tour-finals-men-singles:before {
+	content: ""
+}
+
+.icon-triathlon:before {
+	content: ""
+}
+
+.icon-ufc:before {
+	content: ""
+}
+
+.icon-volleyball:before {
+	content: ""
+}
+
+.icon-waterpolo:before {
+	content: ""
+}
+
+.icon-weightlifting:before {
+	content: ""
+}
+
+.icon-winter-sport:before {
+	content: ""
+}
+
+.icon-winter-sports:before {
+	content: ""
+}
+
+.icon-wrestling:before {
+	content: ""
+}
+
+.icon-third-games:before {
+	content: ""
+}
+
+.icon-rewards:before {
+	content: ""
+}
+
+.icon-recent:before {
+	content: ""
+}
+
+.icon-provider-table-game:before {
+	content: ""
+}
+
+.icon-provider-stake-originals:before {
+	content: ""
+}
+
+.icon-provider-stake-exclusives-2:before {
+	content: ""
+}
+
+.icon-provider-stake-exclusives:before {
+	content: ""
+}
+
+.icon-provider-slots:before {
+	content: ""
+}
+
+.icon-provider-roulette:before {
+	content: ""
+}
+
+.icon-provider-new:before {
+	content: ""
+}
+
+.icon-provider-live-dealers:before {
+	content: ""
+}
+
+.icon-provider-live-casino:before {
+	content: ""
+}
+
+.icon-provider-jackpot-slots:before {
+	content: ""
+}
+
+.icon-provider-blackjack:before {
+	content: ""
+}
+
+.icon-provider-baccarat:before {
+	content: ""
+}
+
+.icon-provider-all-games:before {
+	content: ""
+}
+
+.icon-history:before {
+	content: ""
+}
+
+.icon-group-themes:before {
+	content: ""
+}
+
+.icon-group-providers:before {
+	content: ""
+}
+
+.icon-group-categories:before {
+	content: ""
+}
+
+.icon-filter:before {
+	content: ""
+}
+
+.icon-wechat:before {
+	content: ""
+}
+
+.icon-twitch:before {
+	content: ""
+}
+
+.icon-line:before {
+	content: ""
+}
+
+.icon-instagram:before {
+	content: ""
+}
+
+.icon-bitcoin-talk:before {
+	content: ""
+}
+
+.icon-z-a:before {
+	content: ""
+}
+
+.icon-withdraw:before {
+	content: ""
+}
+
+.icon-warning:before {
+	content: ""
+}
+
+.icon-wallet-settings:before {
+	content: ""
+}
+
+.icon-vpn-2:before {
+	content: ""
+}
+
+.icon-vpn:before {
+	content: ""
+}
+
+.icon-vip-reload:before {
+	content: ""
+}
+
+.icon-vip-rakeback:before {
+	content: ""
+}
+
+.icon-vip-level-up:before {
+	content: ""
+}
+
+.icon-vip-boost:before {
+	content: ""
+}
+
+.icon-viewtoggler2:before {
+	content: ""
+}
+
+.icon-viewtoggler1:before {
+	content: ""
+}
+
+.icon-video-2:before {
+	content: ""
+}
+
+.icon-verify:before {
+	content: ""
+}
+
+.icon-vault-2:before {
+	content: ""
+}
+
+.icon-vault:before {
+	content: ""
+}
+
+.icon-upload:before {
+	content: ""
+}
+
+.icon-update:before {
+	content: ""
+}
+
+.icon-upcoming:before {
+	content: ""
+}
+
+.icon-unmute:before {
+	content: ""
+}
+
+.icon-unfriend:before {
+	content: ""
+}
+
+.icon-undo-2:before {
+	content: ""
+}
+
+.icon-undo:before {
+	content: ""
+}
+
+.icon-tip:before {
+	content: ""
+}
+
+.icon-times:before {
+	content: ""
+}
+
+.icon-theatre-view:before {
+	content: ""
+}
+
+.icon-suit-spade:before {
+	content: ""
+}
+
+.icon-suit-heart:before {
+	content: ""
+}
+
+.icon-suit-diamond:before {
+	content: ""
+}
+
+.icon-suit-club:before {
+	content: ""
+}
+
+.icon-status:before {
+	content: ""
+}
+
+.icon-stats-3:before {
+	content: ""
+}
+
+.icon-starting-soon:before {
+	content: ""
+}
+
+.icon-stake-exclusive:before {
+	content: ""
+}
+
+.icon-sponsorships:before {
+	content: ""
+}
+
+.icon-sound-muted:before {
+	content: ""
+}
+
+.icon-sound:before {
+	content: ""
+}
+
+.icon-slider:before {
+	content: ""
+}
+
+.icon-skip:before {
+	content: ""
+}
+
+.icon-sidebar-select:before {
+	content: ""
+}
+
+.icon-share:before {
+	content: ""
+}
+
+.icon-security:before {
+	content: ""
+}
+
+.icon-scoreboard:before {
+	content: ""
+}
+
+.icon-rotate-2:before {
+	content: ""
+}
+
+.icon-rotate:before {
+	content: ""
+}
+
+.icon-responsible-control-on:before {
+	content: ""
+}
+
+.icon-responsible-control-off:before {
+	content: ""
+}
+
+.icon-remove:before {
+	content: ""
+}
+
+.icon-reload:before {
+	content: ""
+}
+
+.icon-register-social:before {
+	content: ""
+}
+
+.icon-register-safe:before {
+	content: ""
+}
+
+.icon-register-fair:before {
+	content: ""
+}
+
+.icon-rain:before {
+	content: ""
+}
+
+.icon-races:before {
+	content: ""
+}
+
+.icon-promotions:before {
+	content: ""
+}
+
+.icon-popout:before {
+	content: ""
+}
+
+.icon-players:before {
+	content: ""
+}
+
+.icon-player:before {
+	content: ""
+}
+
+.icon-pin:before {
+	content: ""
+}
+
+.icon-percent-2:before {
+	content: ""
+}
+
+.icon-percent:before {
+	content: ""
+}
+
+.icon-pending-friends:before {
+	content: ""
+}
+
+.icon-pause:before {
+	content: ""
+}
+
+.icon-paste:before {
+	content: ""
+}
+
+.icon-ovo:before {
+	content: ""
+}
+
+.icon-odds:before {
+	content: ""
+}
+
+.icon-notification:before {
+	content: ""
+}
+
+.icon-my-bet:before {
+	content: ""
+}
+
+.icon-mute:before {
+	content: ""
+}
+
+.icon-multiply:before {
+	content: ""
+}
+
+.icon-multi:before {
+	content: ""
+}
+
+.icon-more:before {
+	content: ""
+}
+
+.icon-minimize:before {
+	content: ""
+}
+
+.icon-menu_1:before {
+	content: ""
+}
+
+.icon-lowerEqual:before {
+	content: ""
+}
+
+.icon-lower:before {
+	content: ""
+}
+
+.icon-locked:before {
+	content: ""
+}
+
+.icon-live-2:before {
+	content: ""
+}
+
+.icon-live:before {
+	content: ""
+}
+
+.icon-list:before {
+	content: ""
+}
+
+.icon-language-rooms:before {
+	content: ""
+}
+
+.icon-keyboard:before {
+	content: ""
+}
+
+.icon-instantbet:before {
+	content: ""
+}
+
+.icon-in-play:before {
+	content: ""
+}
+
+.icon-infinity:before {
+	content: ""
+}
+
+.icon-increase-2:before {
+	content: ""
+}
+
+.icon-increase:before {
+	content: ""
+}
+
+.icon-hyperlink:before {
+	content: ""
+}
+
+.icon-higherEqual:before {
+	content: ""
+}
+
+.icon-higher:before {
+	content: ""
+}
+
+.icon-hidden:before {
+	content: ""
+}
+
+.icon-hamburger:before {
+	content: ""
+}
+
+.icon-ghost-mode-on:before {
+	content: ""
+}
+
+.icon-ghost-mode-off:before {
+	content: ""
+}
+
+.icon-ghost-mode:before {
+	content: ""
+}
+
+.icon-gems:before {
+	content: ""
+}
+
+.icon-gear:before,
+.icon-settings:before {
+	content: ""
+}
+
+.icon-eye-on:before,
+.icon-friend-unignored:before {
+	content: ""
+}
+
+.icon-friends:before {
+	content: ""
+}
+
+.icon-eye-off:before,
+.icon-friend-ignored:before {
+	content: ""
+}
+
+.icon-casino-arrow-right:before,
+.icon-forward:before {
+	content: ""
+}
+
+.icon-fire:before {
+	content: ""
+}
+
+.icon-favourited:before {
+	content: ""
+}
+
+.icon-fairness:before {
+	content: ""
+}
+
+.icon-exit:before {
+	content: ""
+}
+
+.icon-error:before {
+	content: ""
+}
+
+.icon-equal:before {
+	content: ""
+}
+
+.icon-edit:before {
+	content: ""
+}
+
+.icon-dropdown:before {
+	content: ""
+}
+
+.icon-drake:before {
+	content: ""
+}
+
+.icon-draggable:before {
+	content: ""
+}
+
+.icon-download:before {
+	content: ""
+}
+
+.icon-details:before {
+	content: ""
+}
+
+.icon-detail-2:before {
+	content: ""
+}
+
+.icon-detail-1:before {
+	content: ""
+}
+
+.icon-deposit:before {
+	content: ""
+}
+
+.icon-delete-2:before {
+	content: ""
+}
+
+.icon-delete:before {
+	content: ""
+}
+
+.icon-default-view:before {
+	content: ""
+}
+
+.icon-decrease-2:before {
+	content: ""
+}
+
+.icon-decrease:before {
+	content: ""
+}
+
+.icon-custom-bet:before {
+	content: ""
+}
+
+.icon-close:before,
+.icon-cross:before {
+	content: ""
+}
+
+.icon-coupon:before {
+	content: ""
+}
+
+.icon-corners-2:before {
+	content: ""
+}
+
+.icon-corners:before {
+	content: ""
+}
+
+.icon-copy:before {
+	content: ""
+}
+
+.icon-coins:before {
+	content: ""
+}
+
+.icon-close-right:before {
+	content: ""
+}
+
+.icon-close-left:before {
+	content: ""
+}
+
+.icon-chat-more:before {
+	content: ""
+}
+
+.icon-bug:before {
+	content: ""
+}
+
+.icon-breadcrumb:before {
+	content: ""
+}
+
+.icon-bj-stand:before {
+	content: ""
+}
+
+.icon-bj-split:before {
+	content: ""
+}
+
+.icon-bj-hit:before {
+	content: ""
+}
+
+.icon-bj-double:before {
+	content: ""
+}
+
+.icon-bet-single:before {
+	content: ""
+}
+
+.icon-bet-settled:before {
+	content: ""
+}
+
+.icon-bet-multi:before {
+	content: ""
+}
+
+.icon-bet-manual:before {
+	content: ""
+}
+
+.icon-bet-auto:before {
+	content: ""
+}
+
+.icon-bet-advanced:before {
+	content: ""
+}
+
+.icon-bet-active:before {
+	content: ""
+}
+
+.icon-barcode:before {
+	content: ""
+}
+
+.icon-backward:before,
+.icon-casino-arrow-left:before {
+	content: ""
+}
+
+.icon-back:before {
+	content: ""
+}
+
+.icon-a-z:before {
+	content: ""
+}
+
+.icon-autobet-2:before {
+	content: ""
+}
+
+.icon-autobet:before {
+	content: ""
+}
+
+.icon-arrowup:before {
+	content: ""
+}
+
+.icon-arrowright:before {
+	content: ""
+}
+
+.icon-arrowleft:before {
+	content: ""
+}
+
+.icon-arrowdown:before,
+.icon-casino-filter-arrow:before {
+	content: ""
+}
+
+.icon-animation:before {
+	content: ""
+}
+
+.icon-all-sports:before {
+	content: ""
+}
+
+.icon-all-markets:before {
+	content: ""
+}
+
+.icon-allgames:before {
+	content: ""
+}
+
+.icon-adjust:before {
+	content: ""
+}
+
+.icon-add-friend:before {
+	content: ""
+}
+
+.icon-account:before {
+	content: ""
+}
+
+.icon-support:before {
+	content: ""
+}
+
+.icon-affiliate:before {
+	content: ""
+}
+
+.icon-vip-bonuses:before {
+	content: ""
+}
+
+.icon-favourite:before {
+	content: ""
+}
+
+.icon-trophy:before {
+	content: ""
+}
+
+.icon-casino:before {
+	content: ""
+}
+
+.icon-chat:before {
+	content: ""
+}
+
+.icon-dice:before {
+	content: ""
+}
+
+.icon-betslip:before {
+	content: ""
+}
+
+.icon-arrow-up:before {
+	content: ""
+}
+
+.icon-arrow-right:before {
+	content: ""
+}
+
+.icon-arrow-down:before {
+	content: ""
+}
+
+.icon-game-hover:before,
+.icon-play:before {
+	content: ""
+}
+
+.icon-arrow-left:before {
+	content: ""
+}
+
+.icon-fullscreen:before {
+	content: ""
+}
+
+.icon-search:before {
+	content: ""
+}
+
+.icon-popular:before {
+	content: ""
+}
+
+.icon-phone:before {
+	content: ""
+}
+
+.icon-add-coins:before {
+	content: ""
+}
+
+.icon-menu:before {
+	content: ""
+}
+
+.icon-mail:before {
+	content: ""
+}
+
+.icon-key:before {
+	content: ""
+}
+
+.icon-tick:before {
+	content: ""
+}
+
+.icon-stats:before {
+	content: ""
+}
+
+.icon-news:before {
+	content: ""
+}
+
+.icon-rules:before {
+	content: ""
+}
+
+.icon-twitter:before {
+	content: ""
+}
+
+.icon-facebook:before {
+	content: ""
+}
+
+.icon-google:before {
+	content: ""
+}
+
+.icon-user:before {
+	content: ""
+}
+
+.icon-check:before {
+	content: ""
+}
+
+.icon-camera:before {
+	content: ""
+}
+
+.icon-video:before {
+	content: ""
+}
+
+.icon-info:before {
+	content: ""
+}
+
+.icon-hour .path1:before {
+	color: #3c566a;
+	content: ""
+}
+
+.icon-hour .path2:before {
+	color: #d5dceb;
+	content: "";
+	margin-left: -.94140625em
+}
+
+.icon-currency-cop .path1:before {
+	color: #ffc800;
+	content: ""
+}
+
+.icon-currency-cop .path2:before {
+	color: #eb0a29;
+	content: "";
+	margin-left: -.94140625em
+}
+
+.icon-browse:before {
+	content: ""
+}
+
+.icon-sports:before {
+	content: ""
+}
+
+.icon-currency-pen .path1:before {
+	color: #eb0a29;
+	content: ""
+}
+
+.icon-currency-pen .path2:before {
+	color: #fff;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-currency-pen .path3:before {
+	color: #fff;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-currency-pen .path4:before {
+	color: #fff;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-diamond .path1:before {
+	color: #bde9ff;
+	content: ""
+}
+
+.icon-diamond .path2:before {
+	color: #fff;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-diamond .path3:before {
+	color: #b0b8fc;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-diamond .path4:before {
+	color: #fff;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-diamond .path5:before {
+	color: #b0b8fc;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-diamond .path6:before {
+	color: #bde9ff;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-diamond .path7:before {
+	color: #b0b8fc;
+	content: "";
+	margin-left: -1em
+}
+
+.icon-diamond .path8:before {
+	color: #fff;
+	content: "";
+	margin-left: -1em
+}
+
+/* Old code */
 .logo {
 	height: 6em;
 	padding: 1.5em;

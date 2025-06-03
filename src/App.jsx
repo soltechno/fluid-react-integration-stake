@@ -1,16 +1,67 @@
 import './App.css'
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { simulateLoginApi } from './redux/slices/authSlice';
+
+import Header from './components/layout/Header.jsx';
+import Gameplay from './pages/Gameplay.jsx';
+import Homepage from './pages/Homepage.jsx';
+
 import bonuses from './bonuses.js';
 import config from './config.js';
-import widget from './widget.js';
-import Callout from './components/Callout.jsx';
+
+import widget from './fluid/widget.js';
 import FluidScript from './components/FluidScript.jsx';
 import FluidInitialised from './fluid/FluidInitialised.jsx';
 import FluidInjected from './fluid/FluidInjected.jsx';
 import FluidQuickDepositInitialised from './fluid/FluidQuickDepositInitialised.jsx';
-import FluidQuickDepositInjected from './FluidQuickDepositInjected.jsx';
+import FluidQuickDepositInjected from './fluid/FluidQuickDepositInjected.jsx';
 
 function App() {
+	const dispatch = useDispatch();
+
+	// We need to know the device used, the const will be used to load the inline Quick Deposit component
+	// only for desktop in the ganeplay page.
+	const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+
+	// Set the use authentication state
+	// Some of the state variables are used to control the Fluid component and its initialization.
+	// The handleLogin function simulates a login API call and sets the loggedIn state to true if successful.
+	// This is a placeholder for the actual login logic, which would typically involve an API call.
+	// The loggedIn state is used to conditionally render the Fluid component and load the Fluid script.
+	// The handleLogin function is called when the user clicks the login button in the header.
+	const handleLogin = () => {
+		dispatch(simulateLoginApi()).then((action) => {
+			if (action.payload && action.payload.Success) {
+				setLoggedIn(true);
+				console.log('Login successful!');
+			} else {
+				console.log('Login failed or not successful!');
+			}
+		});
+	};
+
+	// Once the Fluid script is loaded in the DOM, initialize the Fluid component
+	useEffect(() => {
+		const onFluidScriptLoaded = () => {
+			initializeFluid();
+		};
+
+		window.addEventListener('fluidScriptLoaded', onFluidScriptLoaded);
+
+		return () => {
+			window.removeEventListener('fluidScriptLoaded', onFluidScriptLoaded);
+		};
+	}, []);
+
+	// The wallet is launched from the header, from the button "Billetera"
+	const launchWallet = () => {
+		setTransaction(undefined);
+		setOpen(true);
+	}
+
 	const [open, setOpen] = useState(false);
 	const [transaction, setTransaction] = useState('deposit');
 	const [numberOfBonuses, setNumberOfBonuses] = useState(bonuses.length);
@@ -19,23 +70,30 @@ function App() {
 	const [fluidQuickDepositMounted, setFluidQuickDepositMounted] = useState(false);
 
 	const [loggedIn, setLoggedIn] = useState(false);
-	const [scriptLoaded, setScriptLoaded] = useState(false);
 
+	//
+	// Example of events available to launch the wallet
+	//
+	// To open the wallet without a specific transaction (deposit or withdrawal)
 	function wallet() {
 		setTransaction(undefined);
 		setOpen(true);
 	}
 
+	// To open the wallet with a specific transaction (deposit)
 	function deposit() {
 		setTransaction('deposit');
 		setOpen(true);
 	}
 
+	// To open the wallet with a specific transaction (withdrawal)
 	function withdraw() {
 		setTransaction('withdrawal');
 		setOpen(true);
 	}
 
+	// Another version of the Quick Deposit is available, this is a simplified version
+	// that can be used in the game page.
 	function quickDeposit() {
 		setTransaction('quick-deposit');
 		setOpen(true);
@@ -45,6 +103,9 @@ function App() {
 		setOpen(false);
 	}
 
+	//
+	// Listen to the Fluid events
+	//
 	function onCommand(event) {
 		console.info(`%cFluid COMMAND: ${event.detail}`, 'color: lightgreen', event);
 
@@ -81,22 +142,6 @@ function App() {
 
 		console.log('Fluid initialized');
 		setFluidComponentPrepared(true);
-	}
-
-	function getCallout(loggedIn, scriptLoaded) {
-		let content = '';
-
-		if (!scriptLoaded) {
-			content = '✋ You must load Fluid script first';
-		} else if (!loggedIn) {
-			content = '🔒 You must log in first to use the wallet';
-		}
-
-		if (content) {
-			return <Callout>{content}</Callout>;
-		} else {
-			return null;
-		}
 	}
 
 	function getFluidComponent() {
@@ -140,105 +185,47 @@ function App() {
 	}
 
 	function getFluidComponentPrepared() {
-		return scriptLoaded && loggedIn && fluidComponentPrepared;
+		return loggedIn && fluidComponentPrepared;
 	}
 
-	function getAddFluidComponentButtonContent() {
-		if (initialisationMode === 'programmatic') {
-			return 'Add Fluid component (programmatic init)';
-		} else if (initialisationMode === 'injected') {
-			return 'Add Fluid component (initialisation with attributes)';
-		}
-
-		return '';
-	}
 
 	return (
-		<>
-			<h1>
-				<img src="/logo-mark-light.png" alt="Fluid" width={48} style={{ marginRight: '1rem' }}/>
-				Fluid
-			</h1>
-
-			<div className="container">
-				<div className="sidebar">
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={() => setScriptLoaded(!scriptLoaded)} disabled={loggedIn}>
-							{ scriptLoaded ? 'Unload Fluid script' : 'Load Fluid script' }
-						</button>
-					</div>
-
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={initializeFluid}>
-							Initialize Fluid
-						</button>
-					</div>
-
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={initializeFluid}>
-							{ getAddFluidComponentButtonContent() }
-						</button>
-					</div>
-
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={() => { setLoggedIn(!loggedIn); setInitialisationMode('injected') }}>
-							{ loggedIn ? 'Log out' : 'Log in' }
-						</button>
-					</div>
-
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={wallet} disabled={ !getFluidComponentPrepared() }>
-							Wallet
-						</button>
-					</div>
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={deposit} disabled={ !getFluidComponentPrepared() }>
-							Deposit
-						</button>
-					</div>
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={withdraw} disabled={ !getFluidComponentPrepared() }>
-							Withdrawal
-						</button>
-					</div>
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={quickDeposit} disabled={ !getFluidComponentPrepared() }>
-							Quick Deposit
-						</button>
-					</div>
-
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={changeNumberOfBonuses}>
-							Change bonuses
-						</button>
-					</div>
-
-					<hr/>
-
-					<div style={{ marginBottom: '1rem' }}>
-						<button onClick={ () => setFluidQuickDepositMounted(!fluidQuickDepositMounted) }>
-							{ fluidQuickDepositMounted ? 'Unmount Fluid Quick Deposit' : 'Mount Fluid Quick Deposit' }
-						</button>
+		<BrowserRouter>
+			<div className={`layout-container ${isMobile ? 'mobile' : ''}`}>
+				{/* sidebar */}
+				<div className="d-flex">
+					<div className="sidebar-container sidebar-expanded hidden">
+						<img src="/screenshot-sidebar.png" />
 					</div>
 				</div>
+				{/* main content */}
+				<div className="content-container">
+					<Header
+						loggedIn={loggedIn}
+						setLoggedIn={setLoggedIn}
+						onLogin={handleLogin}
+						onLaunchWallet={launchWallet}
+					/>
 
-				<main className="main-content">
-					<div className="" style={{ marginBottom: '1rem' }}>
-						{ scriptLoaded && <FluidScript /> }
-
-						{ getFluidComponentPrepared() && getFluidComponent() }
-
-						{ getCallout(loggedIn, scriptLoaded) }
+					<div className="main-container">
+						<Routes>
+							<Route path="/" element={<Homepage />} />
+							<Route path="/juego/gates-of-olympus-1000" element={<Gameplay isMobile={isMobile} loggedIn={loggedIn} />} />
+							{/* Add more routes here */}
+						</Routes>
 					</div>
+					<footer className="footer-container">
+						<div className="footer__content container"></div>
+					</footer>
 
-					<div className="content-centered">
-						<div>
-							{fluidQuickDepositMounted && getFluidQuickDepositComponent()}
-						</div>
-					</div>
-				</main>
+					{/* Loads the script automatically after login */}
+					{loggedIn && <FluidScript />}
+
+					{/* Load the web component */}
+					{getFluidComponentPrepared() && getFluidComponent()}
+				</div>
 			</div>
-		</>
+		</BrowserRouter>
 	)
 }
 
