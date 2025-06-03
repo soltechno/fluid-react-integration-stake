@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef } from 'react';
-import { listenForFluidEvents } from './fluid/fluidScripts.js';
-import config from './config.js';
+import { listenForFluidEvents } from './fluidScripts.js';
+import config from '../config.js';
 import widget from './widget.js';
-import bonuses from './bonuses.js';
+import bonuses from '../bonuses.js';
 
 function FluidQuickDepositInjected({ onInfo, onCommand, onError }) {
 	const ref = useRef(null);
