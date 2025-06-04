@@ -1,11 +1,11 @@
-import bonuses from '../bonuses.js';
+import bonuses from './bonuses.js';
 
 export default {
-	userId: '10000',
+	userId: '10001',
 	sessionId: '10000-a-valid-session',
-	locale: 'en-GB', // Available in the login response',
+	locale: 'en-GB',
 	countryCode: 'IRL',
-	currencyCode: 'COP', // Available in the login response
+	currencyCode: 'COP',
 	userData: {
 		age: 33,
 		previousDeposit: 125,
