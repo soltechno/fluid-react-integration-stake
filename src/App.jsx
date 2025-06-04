@@ -1,16 +1,16 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { simulateLoginApi } from './redux/slices/authSlice';
 
 import Header from './components/layout/Header.jsx';
 import Gameplay from './pages/Gameplay.jsx';
 import Homepage from './pages/Homepage.jsx';
 
-import bonuses from './bonuses.js';
-import config from './config.js';
 
+import config from './config.js';
+import bonuses from './fluid/bonuses.js';
 import widget from './fluid/widget.js';
 import FluidScript from './components/FluidScript.jsx';
 import FluidInitialised from './fluid/FluidInitialised.jsx';
@@ -21,7 +21,15 @@ import FluidQuickDepositInjected from './fluid/FluidQuickDepositInjected.jsx';
 function App() {
 	const dispatch = useDispatch();
 
-	// We need to know the device used, the const will be used to load the inline Quick Deposit component
+	const [open, setOpen] = useState(false);
+	const [transaction, setTransaction] = useState('deposit');
+	const [numberOfBonuses, setNumberOfBonuses] = useState(bonuses.length);
+	const [initialisationMode, setInitialisationMode] = useState('injected');
+	const [fluidComponentPrepared, setFluidComponentPrepared] = useState(false);
+	const [fluidQuickDepositMounted, setFluidQuickDepositMounted] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
+
+	// The const will be used to load the inline Quick Deposit component
 	// only for desktop in the ganeplay page.
 	const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
@@ -46,7 +54,9 @@ function App() {
 	// Once the Fluid script is loaded in the DOM, initialize the Fluid component
 	useEffect(() => {
 		const onFluidScriptLoaded = () => {
-			initializeFluid();
+			if (loggedIn && widget) {
+				initializeFluid();
+			}
 		};
 
 		window.addEventListener('fluidScriptLoaded', onFluidScriptLoaded);
@@ -54,7 +64,8 @@ function App() {
 		return () => {
 			window.removeEventListener('fluidScriptLoaded', onFluidScriptLoaded);
 		};
-	}, []);
+	}, [loggedIn, widget]);
+
 
 	// The wallet is launched from the header, from the button "Billetera"
 	const launchWallet = () => {
@@ -62,50 +73,37 @@ function App() {
 		setOpen(true);
 	}
 
-	const [open, setOpen] = useState(false);
-	const [transaction, setTransaction] = useState('deposit');
-	const [numberOfBonuses, setNumberOfBonuses] = useState(bonuses.length);
-	const [initialisationMode, setInitialisationMode] = useState('injected');
-	const [fluidComponentPrepared, setFluidComponentPrepared] = useState(false);
-	const [fluidQuickDepositMounted, setFluidQuickDepositMounted] = useState(false);
+	/* Function to open and close the Fluid component */
+	function close() {
+		setOpen(false);
+	}
 
-	const [loggedIn, setLoggedIn] = useState(false);
-
-	//
-	// Example of events available to launch the wallet
-	//
-	// To open the wallet without a specific transaction (deposit or withdrawal)
+	/* Example of events available to launch the wallet */
 	function wallet() {
 		setTransaction(undefined);
 		setOpen(true);
 	}
 
-	// To open the wallet with a specific transaction (deposit)
 	function deposit() {
 		setTransaction('deposit');
 		setOpen(true);
 	}
 
-	// To open the wallet with a specific transaction (withdrawal)
 	function withdraw() {
 		setTransaction('withdrawal');
 		setOpen(true);
 	}
 
-	// Another version of the Quick Deposit is available, this is a simplified version
-	// that can be used in the game page.
+	/*
+		Another version of the Quick Deposit is available, this is a simplified version
+		that can be used in the game page.
+	*/
 	function quickDeposit() {
 		setTransaction('quick-deposit');
 		setOpen(true);
 	}
 
-	function close() {
-		setOpen(false);
-	}
-
-	//
-	// Listen to the Fluid events
-	//
+	/* Listen to the Fluid events */
 	function onCommand(event) {
 		console.info(`%cFluid COMMAND: ${event.detail}`, 'color: lightgreen', event);
 
@@ -122,12 +120,7 @@ function App() {
 		console.error(`Fluid ERROR: ${event.detail}`, event);
 	}
 
-	function changeNumberOfBonuses() {
-		const newNumberOfBonuses = numberOfBonuses - 1 < 0 ? 3 : numberOfBonuses - 1;
-		setNumberOfBonuses(newNumberOfBonuses);
-		console.log('Number of bonuses set to', newNumberOfBonuses);
-	}
-
+	/* Initialize the Fluid component */
 	async function initializeFluid() {
 		setInitialisationMode('programmatic');
 
@@ -188,6 +181,12 @@ function App() {
 		return loggedIn && fluidComponentPrepared;
 	}
 
+	function changeNumberOfBonuses() {
+		const newNumberOfBonuses = numberOfBonuses - 1 < 0 ? 3 : numberOfBonuses - 1;
+		setNumberOfBonuses(newNumberOfBonuses);
+		console.log('Number of bonuses set to', newNumberOfBonuses);
+	}
+
 
 	return (
 		<BrowserRouter>
@@ -218,10 +217,10 @@ function App() {
 						<div className="footer__content container"></div>
 					</footer>
 
-					{/* Loads the script automatically after login */}
+					{/* Loads the fluid script automatically after login */}
 					{loggedIn && <FluidScript />}
 
-					{/* Load the web component */}
+					{/* Load the web component automatically after login */}
 					{getFluidComponentPrepared() && getFluidComponent()}
 				</div>
 			</div>
