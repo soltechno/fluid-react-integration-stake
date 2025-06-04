@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { listenForFluidEvents } from './fluidScripts.js';
 import config from '../config.js';
 import widget from './widget.js';
-import bonuses from '../bonuses.js';
+import bonuses from './bonuses.js';
 
 function FluidInjected({ onInfo, onCommand, onError, open, transaction }) {
 	const ref = useRef(null);
@@ -25,7 +25,7 @@ function FluidInjected({ onInfo, onCommand, onError, open, transaction }) {
 		bonuses={JSON.stringify(bonuses || [])}
 		user-data={JSON.stringify(widget.userData)}
 		deposit-limit=""
-		success-cta-link="">
+		success-cta-link="injected-success-cta-link">
 	</fluid-widget>
 }
 
