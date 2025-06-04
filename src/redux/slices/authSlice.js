@@ -17,7 +17,7 @@ export const simulateLoginApi = createAsyncThunk('auth/simulateLogin', async () 
 					Barcode: 'SK31463175',
 					Balance: '220.56',
 					CountryId: 'COL', // For the example, let's assume 48 this is Colombia
-					CurrencyId: 44,
+					CurrencyId: 'COP', // For the example, let's assume 44 is COP (Colombian Peso)
 					FromWeb: true,
 					IsTest: false,
 					DisableOneClickBet: false,
