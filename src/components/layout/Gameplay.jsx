@@ -108,14 +108,14 @@ function Gameplay({ children, isMobile, loggedIn }) {
 											<div className="game-wrp">
 												<div className="img-wrp">
 													<img alt="Sugar Rush 1000" src="https://i2.stake.com.co/cdn-cgi/image/width=300,quality=75/stake_uploads/97/casino_game/image/14703/Sugar_Rush_1000.jpg" />
-													<div className="game-hover">
+													{/* <div className="game-hover">
 														<a className="game-hover__link-wrp" rel="" href="/es/casino/juego/sugar-rush-1000">
 															<h3 className="game-hover__title">Sugar Rush 1000</h3>
 															<a className="btn btn-primary" rel="" href="/es/casino/juego/sugar-rush-1000">Juega ahora</a>
 															<i className="game-hover__icon icon-game-hover"></i>
 															<span className="game-hover__provider">Pragmatic Play</span>
 														</a>
-													</div>
+													</div> */}
 													<label className="game-favourite">
 														<input type="checkbox" className="d-none" />
 														<i className="icon-heart">
@@ -158,14 +158,14 @@ function Gameplay({ children, isMobile, loggedIn }) {
 											<div className="game-wrp">
 												<div className="img-wrp">
 													<img alt="Gates of Olympus 1000" src="https://i2.stake.com.co/cdn-cgi/image/width=300,quality=75/stake_uploads/97/casino_game/image/13974/Gates_Of_Olympus_1000.webp" />
-													<div className="game-hover">
+													{/* <div className="game-hover">
 														<a className="game-hover__link-wrp" rel="" href="/es/casino/juego/gates-of-olympus-1000">
 															<h3 className="game-hover__title">Gates of Olympus 1000</h3>
 															<a className="btn btn-primary" rel="" href="/es/casino/juego/gates-of-olympus-1000">Juega ahora</a>
 															<i className="game-hover__icon icon-game-hover"></i>
 															<span className="game-hover__provider">Pragmatic Play</span>
 														</a>
-													</div>
+													</div> */}
 													<label className="game-favourite">
 														<input type="checkbox" className="d-none" />
 														<i className="icon-heart">
