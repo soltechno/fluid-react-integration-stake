@@ -2,7 +2,7 @@ import bonuses from './bonuses.js';
 
 export default {
 	userId: '10001',
-	sessionId: '10001-a-valid-session',
+	sessionId: '10001-',
 	locale: 'es-CO',
 	countryCode: 'COL',
 	currencyCode: 'COP',

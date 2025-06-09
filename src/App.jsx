@@ -131,7 +131,7 @@ function App() {
 
 		console.log('Initializing Fluid', parameters);
 
-		await fluid.init(parameters);
+		// await fluid.init(parameters);
 
 		console.log('Fluid initialized');
 		setFluidComponentPrepared(true);

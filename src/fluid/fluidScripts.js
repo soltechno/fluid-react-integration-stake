@@ -13,3 +13,9 @@ export function listenForFluidEvents(ref, onCommand, onInfo, onError) {
 		}
 	}
 }
+
+export function generateSessionId(prefix = '10001-') {
+	const hash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+	console.log('Generated session ID:', prefix + hash);
+	return prefix + hash;
+}

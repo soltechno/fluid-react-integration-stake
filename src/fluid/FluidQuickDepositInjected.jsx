@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from 'react';
-import { listenForFluidEvents } from './fluidScripts.js';
+import { generateSessionId, listenForFluidEvents } from './fluidScripts.js';
 import config from '../config.js';
 import widget from './widget.js';
 import bonuses from './bonuses.js';
@@ -15,7 +15,7 @@ function FluidQuickDepositInjected({ onInfo, onCommand, onError }) {
 			id="fluid-quick-deposit"
 			operator-id={config.operatorId.toString()}
 			user-id={widget.userId}
-			session-id={widget.sessionId}
+			session-id={generateSessionId(widget.sessionId)}
 			locale={widget.locale}
 			currency={widget.currencyCode}
 			country={widget.countryCode}
