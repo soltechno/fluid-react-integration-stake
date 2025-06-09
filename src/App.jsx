@@ -12,7 +12,7 @@ import Homepage from './pages/Homepage.jsx';
 import config from './config.js';
 import bonuses from './fluid/bonuses.js';
 import widget from './fluid/widget.js';
-import FluidScript from './components/FluidScript.jsx';
+import FluidScript from './fluid/FluidScript.jsx';
 import FluidInitialised from './fluid/FluidInitialised.jsx';
 import FluidInjected from './fluid/FluidInjected.jsx';
 import FluidQuickDepositInitialised from './fluid/FluidQuickDepositInitialised.jsx';
