@@ -11,7 +11,7 @@ function Gameplay({ children, isMobile, loggedIn }) {
 			<div className="StyledGameLaunchBlockV2-sc-jtt6wv furwGf">
 				<div className="game-block">
 					<div className="inner-game-container">
-						<iframe allowFullScreen="" className="game" width="100%" height="100%" scrolling="no" src="https://70sqp0z2kd.psduxrwjdm.net/gs2c/playGame.do?key=token%3D26415517-6eb138f496f9427588bfd8f79649d122%60%7C%60symbol%3Dvs20sugarrushx%60%7C%60language%3Des%60%7C%60lobbyUrl%3Dhttps%3A%2F%2Fstake.com.co%2Fes%2Fcasino%2Fprincipal&amp;ppkv=2&amp;stylename=rare_stakeco&amp;treq=lyKXD1ETAeBXw4fzJ4voTuTQAl3tpRz1aoC1sUpDx2KL1OkHu4l6F958m4J9ej4b&amp;isGameUrlApiCalled=true&amp;userId=1765974_44"></iframe>
+						<img src="/screenshot-gameplay.jpg" />
 						<div className="inner-game-container__settings">
 							<div className="inner-game-container__settings-buttons">
 								<button className="btn btn-primary mr-1">Juego real</button>
