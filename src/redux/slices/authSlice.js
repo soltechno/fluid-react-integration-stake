@@ -15,7 +15,7 @@ export const simulateLoginApi = createAsyncThunk('auth/simulateLogin', async () 
 					Login: 'C&R',
 					Email: 'j.camilokarvajal@gmail.com',
 					Barcode: 'SK31463175',
-					Balance: '220.56',
+					Balance: '1220.56',
 					CountryId: 'COL', // For the example, let's assume 48 this is Colombia
 					CurrencyId: 'COP', // For the example, let's assume 44 is COP (Colombian Peso)
 					FromWeb: true,

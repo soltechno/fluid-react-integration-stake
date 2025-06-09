@@ -5,6 +5,13 @@ function Header({ children, loggedIn, setLoggedIn, onLogin, onLaunchWallet }) {
 	const balance = useSelector((state) => state.auth.userData?.Data?.Balance || '0.00');
 	const currency = useSelector((state) => state.auth.userData?.Data?.currency || '$');
 
+	function formatBalance(balance) {
+		return new Intl.NumberFormat('es-CO', {
+			style: 'currency',
+			currency: 'COP'
+		}).format(balance);
+	}
+
 	return (
 		<div className="bglsGc">
 			<header className="page-header">
@@ -25,7 +32,7 @@ function Header({ children, loggedIn, setLoggedIn, onLogin, onLaunchWallet }) {
 						{loggedIn && (
 							<div className="page-header__container-balance">
 								<div className="balance-toggle">
-									<button className="button variant-tab size-sm"><span>{currency}{balance}</span></button>
+									<button className="button variant-tab size-sm"><span>{formatBalance(balance)}</span></button>
 									<button className="button variant-action size-sm" onClick={onLaunchWallet}>Billetera</button>
 								</div>
 							</div>

@@ -20,7 +20,7 @@ function FluidInjected({ onInfo, onCommand, onError, open, transaction }) {
 		currency={widget.currencyCode}
 		transaction={transaction}
 		open={open}
-		balance="999"
+		balance="1220.56"
 		withdrawable-balance="900"
 		bonuses={JSON.stringify(bonuses || [])}
 		user-data={JSON.stringify(widget.userData)}
