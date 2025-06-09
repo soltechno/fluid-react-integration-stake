@@ -17,6 +17,7 @@ function FluidInitialised({ onInfo, onCommand, onError, open, transaction }) {
 			ref={ref}
 			id="fluid-widget"
 			transaction={transaction}
+			locale="es"
 			open={open}
 			balance={userData?.Balance || '0.00'}
 			currencyCode={userData?.CurrencyId || 'COP'}
