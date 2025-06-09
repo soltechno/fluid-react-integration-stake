@@ -27,7 +27,7 @@ const bonuses = [
 				{ "providerType": "WEBREDIRECT", "service": "BLIXTPAY" }
 			]
 		},
-        "selected": true
+        "selected": false
 	},
 	{
 		"code": "LoginBonus",

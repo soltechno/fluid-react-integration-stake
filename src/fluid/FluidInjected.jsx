@@ -24,8 +24,7 @@ function FluidInjected({ onInfo, onCommand, onError, open, transaction }) {
 		withdrawable-balance="900"
 		bonuses={JSON.stringify(bonuses || [])}
 		user-data={JSON.stringify(widget.userData)}
-		deposit-limit=""
-		success-cta-link="injected-success-cta-link">
+		deposit-limit="">
 	</fluid-widget>
 }
 

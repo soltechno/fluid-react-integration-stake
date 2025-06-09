@@ -122,7 +122,7 @@ function App() {
 
 	/* Initialize the Fluid component */
 	async function initializeFluid() {
-		setInitialisationMode('programmatic');
+		setInitialisationMode('injected');
 
 		const parameters = {
 			operatorId: config.operatorId,
