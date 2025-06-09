@@ -11,7 +11,7 @@ function Gameplay({ children, isMobile, loggedIn }) {
 			<div className="StyledGameLaunchBlockV2-sc-jtt6wv furwGf">
 				<div className="game-block">
 					<div className="inner-game-container">
-						<img src="/screenshot-gameplay.jpg" />
+						<img src="/screenshot-gameplay.jpg" style={{ maxInlineSize: '100%' }} />
 						<div className="inner-game-container__settings">
 							<div className="inner-game-container__settings-buttons">
 								<button className="btn btn-primary mr-1">Juego real</button>
