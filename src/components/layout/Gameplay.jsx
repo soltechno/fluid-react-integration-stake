@@ -1,4 +1,5 @@
 import './Gameplay.css'
+import FluidQuickDepositInjected from "../../fluid/FluidQuickDepositInjected.jsx";
 
 function Gameplay({ children, isMobile, loggedIn }) {
 
@@ -40,20 +41,7 @@ function Gameplay({ children, isMobile, loggedIn }) {
 
 						{showQuickDeposit && (
 							<div className="quick-deposit-wrapper">
-								<fluid-quick-deposit
-									operator-id="<your operator ID>"
-									session-id="<authenticated user session ID>"
-									user-id="<authenticated user ID>"
-									user-data="<authenticated user details>"
-									locale="<locale tag>"
-									country="<authenticated user country>"
-									currency="<user currency code>"
-									bonuses="<bonus data>"
-									deposit-limit="<responsible gaming current deposit limit>"
-									z-index="<z-index value>"
-									transaction-attributes="<stringified JSON object of key-value pairs for the payment provider>"
-									deposit-amount="<pre-filled deposit amount>"
-								></fluid-quick-deposit>
+								<FluidQuickDepositInjected />
 							</div>
 						)}
 
