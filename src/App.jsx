@@ -3,11 +3,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { simulateLoginApi } from './redux/slices/authSlice';
+import { setOpen, setTransaction } from './redux/slices/fluidSlice.js';
 
 import Header from './components/layout/Header.jsx';
 import Gameplay from './pages/Gameplay.jsx';
 import Homepage from './pages/Homepage.jsx';
-
 
 import config from './config.js';
 import bonuses from './fluid/bonuses.js';
@@ -21,8 +21,8 @@ import FluidQuickDepositInjected from './fluid/FluidQuickDepositInjected.jsx';
 function App() {
 	const dispatch = useDispatch();
 
-	const [open, setOpen] = useState(false);
-	const [transaction, setTransaction] = useState('deposit');
+	const open = useSelector((state) => state.fluid.open);
+	const transaction = useSelector((state) => state.fluid.transaction);
 	const [numberOfBonuses, setNumberOfBonuses] = useState(bonuses.length);
 	const [initialisationMode, setInitialisationMode] = useState('injected');
 	const [fluidComponentPrepared, setFluidComponentPrepared] = useState(false);
@@ -69,29 +69,29 @@ function App() {
 
 	// The wallet is launched from the header, from the button "Billetera"
 	const launchWallet = () => {
-		setTransaction(undefined);
-		setOpen(true);
+		dispatch(setTransaction(undefined));
+		dispatch(setOpen(true));
 	}
 
 	/* Function to open and close the Fluid component */
 	function close() {
-		setOpen(false);
+		dispatch(setOpen(false));
 	}
 
 	/* Example of events available to launch the wallet */
 	function wallet() {
-		setTransaction(undefined);
-		setOpen(true);
+		dispatch(setTransaction(undefined));
+		dispatch(setOpen(true));
 	}
 
 	function deposit() {
-		setTransaction('deposit');
-		setOpen(true);
+		dispatch(setTransaction('deposit'));
+		dispatch(setOpen(true));
 	}
 
 	function withdraw() {
-		setTransaction('withdrawal');
-		setOpen(true);
+		dispatch(setTransaction('withdrawal'));
+		dispatch(setOpen(true));
 	}
 
 	/*
@@ -99,8 +99,8 @@ function App() {
 		that can be used in the game page.
 	*/
 	function quickDeposit() {
-		setTransaction('quick-deposit');
-		setOpen(true);
+		dispatch(setTransaction('quick-deposit'));
+		dispatch(setOpen(true));
 	}
 
 	/* Listen to the Fluid events */

@@ -1,10 +1,31 @@
 import './Gameplay.css'
 import FluidQuickDepositInjected from "../../fluid/FluidQuickDepositInjected.jsx";
+import { useDispatch } from "react-redux";
+import { setOpen, setTransaction } from "../../redux/slices/fluidSlice.js";
 
 function Gameplay({ children, isMobile, loggedIn }) {
 
+	const dispatch = useDispatch();
+
 	// We want to display the inline quick deposit component only if the user is logged in and not on a mobile device.
 	const showQuickDeposit = !isMobile && loggedIn;
+
+	function onCommand(event) {
+		console.info(`%cFluid COMMAND: ${event.detail}`, 'color: lightgreen', event);
+	}
+
+	function onInfo(event) {
+		console.info(`%cFluid INFO: ${event.detail}`, 'color: cornflowerblue', event);
+
+		if (event.detail.message === 'deposit-cta-clicked') {
+			dispatch(setTransaction('deposit'));
+			dispatch(setOpen(true));
+		}
+	}
+
+	function onError(event) {
+		console.error(`Fluid ERROR: ${event.detail}`, event);
+	}
 
 	return (
 		<div className="container">
@@ -41,7 +62,11 @@ function Gameplay({ children, isMobile, loggedIn }) {
 
 						{showQuickDeposit && (
 							<div className="quick-deposit-wrapper">
-								<FluidQuickDepositInjected />
+								<FluidQuickDepositInjected
+									onInfo={onInfo}
+									onCommand={onCommand}
+									onError={onError}
+								/>
 							</div>
 						)}
 
